@@ -1,6 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Código -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/campo_codigo">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/campo_codigo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Nombre -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="@string/campo_nombre">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/campo_nombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Tipo -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/campo_tipo"
+            android:layout_marginTop="16dp" />
+
+        <Spinner
+            android:id="@+id/spinner_tipo_formulario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- Estado -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/campo_estado"
+            android:layout_marginTop="16dp" />
+
+        <RadioGroup
+            android:id="@+id/radio_grupo_estado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio_operativo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/estado_operativo" />
+
+            <RadioButton
+                android:id="@+id/radio_mantenimiento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/estado_mantenimiento" />
+
+            <RadioButton
+                android:id="@+id/radio_fuera_servicio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/estado_fuera_servicio" />
+        </RadioGroup>
+
+        <!-- Observaciones -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/campo_observaciones">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/campo_observaciones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minLines="3"
+                android:gravity="top" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Botón -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/boton_guardar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/boton_guardar"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
+
+</ScrollView>

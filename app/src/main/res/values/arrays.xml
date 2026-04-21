@@ -1,2 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+    <string-array name="tipos_equipo">
+        <item>Multímetro</item>
+        <item>OTDR</item>
+        <item>Medidor de potencia</item>
+        <item>Analizador de espectro</item>
+        <item>Pinza amperimétrica</item>
+    </string-array>
+
+    <string-array name="estados_equipo">
+        <item>Operativo</item>
+        <item>En mantenimiento</item>
+        <item>Fuera de servicio</item>
+    </string-array>
+
+    <string-array name="filtro_tipos_equipo">
+        <item>Todos los tipos</item>
+        <item>Multímetro</item>
+        <item>OTDR</item>
+        <item>Medidor de potencia</item>
+        <item>Analizador de espectro</item>
+        <item>Pinza amperimétrica</item>
+    </string-array>
+
+    <string-array name="filtro_estados_equipo">
+        <item>Todos los estados</item>
+        <item>Operativo</item>
+        <item>En mantenimiento</item>
+        <item>Fuera de servicio</item>
+    </string-array>
+
+</resources>

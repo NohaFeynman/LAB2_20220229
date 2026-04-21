@@ -1,3 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">lab2_20220229</string>
+
+    <!-- Nombre de la app -->
+    <string name="app_name">Lab2_20220229</string>
+
+    <!-- Inicio -->
+    <string name="bienvenida">Bienvenido</string>
+    <string name="codigo_alumno">Código: 20220229</string>
+    <string name="nombre_alumno">Nombre: Nilton Condori</string>
+    <string name="boton_ingresar">Ingresar</string>
+    <string name="error_sin_internet">No hay conexión a Internet</string>
+
+    <!-- Equipos -->
+    <string name="titulo_equipos">Inventario de Equipos</string>
+    <string name="mensaje_lista_vacia">No hay registros disponibles</string>
+    <string name="filtro_tipo">Filtrar por tipo</string>
+    <string name="filtro_estado">Filtrar por estado</string>
+
+    <!-- Formulario -->
+    <string name="titulo_registrar">Registrar equipo</string>
+    <string name="titulo_editar">Editar equipo</string>
+
+    <string name="campo_codigo">Código</string>
+    <string name="campo_nombre">Nombre del equipo</string>
+    <string name="campo_tipo">Tipo de equipo</string>
+    <string name="campo_estado">Estado</string>
+    <string name="campo_observaciones">Observaciones</string>
+
+    <string name="boton_guardar">Guardar</string>
+    <string name="boton_actualizar">Actualizar</string>
+
+    <!-- Estados -->
+    <string name="estado_operativo">Operativo</string>
+    <string name="estado_mantenimiento">En mantenimiento</string>
+    <string name="estado_fuera_servicio">Fuera de servicio</string>
+
+    <!-- Acciones -->
+    <string name="accion_editar">Editar</string>
+    <string name="accion_eliminar">Eliminar</string>
+    <string name="accion_refrescar">Refrescar</string>
+
+    <!-- Confirmaciones -->
+    <string name="confirmacion_titulo">Confirmación</string>
+    <string name="confirmacion_guardar">¿Desea guardar este equipo?</string>
+    <string name="confirmacion_actualizar">¿Desea actualizar este equipo?</string>
+    <string name="confirmacion_eliminar">¿Desea eliminar este equipo?</string>
+
+    <string name="boton_si">Sí</string>
+    <string name="boton_no">No</string>
+
 </resources>
