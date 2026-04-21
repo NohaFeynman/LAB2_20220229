@@ -9,8 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -20,19 +18,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
 
 import com.example.lab2_20220229.R;
+import com.example.lab2_20220229.databinding.ActivityEquiposBinding;
 import com.example.lab2_20220229.models.Equipo;
 import com.example.lab2_20220229.utils.Constantes;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class EquiposActivity extends AppCompatActivity {
 
-    private LinearLayout contenedorLista;
-    private TextView textoVacio;
-    private Spinner spinnerTipo;
-    private Spinner spinnerEstado;
+    private ActivityEquiposBinding binding;
 
     private final List<Equipo> listaEquipos = new ArrayList<>();
 
@@ -67,26 +62,18 @@ public class EquiposActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_equipos);
 
-        contenedorLista = findViewById(R.id.contenedor_lista);
-        textoVacio = findViewById(R.id.texto_vacio);
-        spinnerTipo = findViewById(R.id.spinner_tipo);
-        spinnerEstado = findViewById(R.id.spinner_estado);
-
-        FloatingActionButton fabAgregar = findViewById(R.id.fab_agregar);
+        binding = ActivityEquiposBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         configurarSpinners();
         configurarEventosFiltros();
         actualizarVistaVacia();
 
-        fabAgregar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(EquiposActivity.this, FormularioEquipoActivity.class);
-                intent.putExtra(Constantes.extra_modo, Constantes.modo_crear);
-                lanzadorFormulario.launch(intent);
-            }
+        binding.fabAgregar.setOnClickListener(v -> {
+            Intent intent = new Intent(EquiposActivity.this, FormularioEquipoActivity.class);
+            intent.putExtra(Constantes.extra_modo, Constantes.modo_crear);
+            lanzadorFormulario.launch(intent);
         });
     }
 
@@ -97,7 +84,7 @@ public class EquiposActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_item
         );
         adapterTipo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerTipo.setAdapter(adapterTipo);
+        binding.spinnerTipo.setAdapter(adapterTipo);
 
         ArrayAdapter<CharSequence> adapterEstado = ArrayAdapter.createFromResource(
                 this,
@@ -105,11 +92,11 @@ public class EquiposActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_item
         );
         adapterEstado.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerEstado.setAdapter(adapterEstado);
+        binding.spinnerEstado.setAdapter(adapterEstado);
     }
 
     private void configurarEventosFiltros() {
-        spinnerTipo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        binding.spinnerTipo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 renderizarLista();
@@ -120,7 +107,7 @@ public class EquiposActivity extends AppCompatActivity {
             }
         });
 
-        spinnerEstado.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        binding.spinnerEstado.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 renderizarLista();
@@ -164,14 +151,14 @@ public class EquiposActivity extends AppCompatActivity {
     }
 
     private void renderizarLista() {
-        contenedorLista.removeAllViews();
+        binding.contenedorLista.removeAllViews();
 
-        String filtroTipo = spinnerTipo.getSelectedItem() != null
-                ? spinnerTipo.getSelectedItem().toString()
+        String filtroTipo = binding.spinnerTipo.getSelectedItem() != null
+                ? binding.spinnerTipo.getSelectedItem().toString()
                 : "Todos los tipos";
 
-        String filtroEstado = spinnerEstado.getSelectedItem() != null
-                ? spinnerEstado.getSelectedItem().toString()
+        String filtroEstado = binding.spinnerEstado.getSelectedItem() != null
+                ? binding.spinnerEstado.getSelectedItem().toString()
                 : "Todos los estados";
 
         for (int i = 0; i < listaEquipos.size(); i++) {
@@ -181,12 +168,12 @@ public class EquiposActivity extends AppCompatActivity {
             boolean cumpleEstado = filtroEstado.equals("Todos los estados") || equipo.estado.equals(filtroEstado);
 
             if (cumpleTipo && cumpleEstado) {
-                View item = LayoutInflater.from(this).inflate(R.layout.item_equipo, contenedorLista, false);
+                View item = LayoutInflater.from(this).inflate(R.layout.item_equipo, binding.contenedorLista, false);
 
                 llenarDatosItem(item, equipo);
                 configurarLongClick(item, i);
 
-                contenedorLista.addView(item);
+                binding.contenedorLista.addView(item);
             }
         }
 
@@ -220,24 +207,21 @@ public class EquiposActivity extends AppCompatActivity {
     private void configurarLongClick(View item, int posicionReal) {
         item.setTag(posicionReal);
 
-        item.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                Object tag = v.getTag();
+        item.setOnLongClickListener(v -> {
+            Object tag = v.getTag();
 
-                if (tag instanceof Integer) {
-                    posicionSeleccionada = (Integer) tag;
-                } else {
-                    posicionSeleccionada = -1;
-                }
-
-                if (actionModeActual != null) {
-                    actionModeActual.finish();
-                }
-
-                actionModeActual = startSupportActionMode(actionModeCallback);
-                return true;
+            if (tag instanceof Integer) {
+                posicionSeleccionada = (Integer) tag;
+            } else {
+                posicionSeleccionada = -1;
             }
+
+            if (actionModeActual != null) {
+                actionModeActual.finish();
+            }
+
+            actionModeActual = startSupportActionMode(actionModeCallback);
+            return true;
         });
     }
 
@@ -326,10 +310,10 @@ public class EquiposActivity extends AppCompatActivity {
     }
 
     private void actualizarVistaVacia() {
-        if (contenedorLista.getChildCount() == 0) {
-            textoVacio.setVisibility(View.VISIBLE);
+        if (binding.contenedorLista.getChildCount() == 0) {
+            binding.textoVacio.setVisibility(View.VISIBLE);
         } else {
-            textoVacio.setVisibility(View.GONE);
+            binding.textoVacio.setVisibility(View.GONE);
         }
     }
 
@@ -342,8 +326,8 @@ public class EquiposActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.opcion_refresh) {
-            spinnerTipo.setSelection(0);
-            spinnerEstado.setSelection(0);
+            binding.spinnerTipo.setSelection(0);
+            binding.spinnerEstado.setSelection(0);
             renderizarLista();
             return true;
         }
