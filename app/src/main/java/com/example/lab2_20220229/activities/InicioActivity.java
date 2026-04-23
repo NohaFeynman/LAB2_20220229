@@ -22,6 +22,24 @@ public class InicioActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.botonIngresar.setOnClickListener(v -> {
+            String codigoIngresado = "";
+
+            if (binding.campoCodigoIngreso.getText() != null) {
+                codigoIngresado = binding.campoCodigoIngreso.getText().toString().trim();
+            }
+
+            if (codigoIngresado.isEmpty()) {
+                binding.layoutCodigoIngreso.setError(getString(R.string.error_codigo_vacio));
+                return;
+            }
+
+            if (!codigoIngresado.equals(getString(R.string.codigo_pucp_correcto))) {
+                binding.layoutCodigoIngreso.setError(getString(R.string.error_codigo_incorrecto));
+                return;
+            }
+
+            binding.layoutCodigoIngreso.setError(null);
+
             boolean hayConexion = ValidacionConexion.hayConexionInternet(InicioActivity.this);
 
             if (!hayConexion) {

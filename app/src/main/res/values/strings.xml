@@ -49,4 +49,10 @@
     <string name="boton_si">Sí</string>
     <string name="boton_no">No</string>
 
+    <!-- Validación código PUCP -->
+    <string name="hint_codigo_ingreso">Ingrese su código PUCP</string>
+    <string name="error_codigo_vacio">Debe ingresar su código PUCP</string>
+    <string name="error_codigo_incorrecto">El código PUCP ingresado no es correcto</string>
+    <string name="codigo_pucp_correcto">20220229</string>
+
 </resources>

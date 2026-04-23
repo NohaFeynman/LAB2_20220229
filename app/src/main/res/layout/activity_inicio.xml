@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="96dp"
         android:layout_marginEnd="32dp"
         android:gravity="center"
         android:text="¡Bienvenido a mi&#10;Inventario móvil!"
@@ -25,11 +25,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/texto_codigo"
+        android:id="@+id/texto_nombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="@string/codigo_alumno"
+        android:text="@string/nombre_alumno"
         android:textColor="@android:color/white"
         android:textSize="14sp"
         android:textStyle="bold"
@@ -37,24 +37,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/texto_bienvenida" />
 
-    <TextView
-        android:id="@+id/texto_nombre"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_codigo_ingreso"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/nombre_alumno"
-        android:textColor="@android:color/white"
-        android:textSize="14sp"
-        android:textStyle="bold"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="40dp"
+        android:hint="@string/hint_codigo_ingreso"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@android:color/white"
+        app:hintTextColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/texto_codigo" />
+        app:layout_constraintTop_toBottomOf="@id/texto_nombre">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/campo_codigo_ingreso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/darker_gray" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/boton_ingresar"
         android:layout_width="120dp"
         android:layout_height="56dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="40dp"
         android:text="@string/boton_ingresar"
         android:textAllCaps="false"
         android:textColor="@android:color/black"
@@ -62,6 +73,6 @@
         app:cornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/texto_nombre" />
+        app:layout_constraintTop_toBottomOf="@id/layout_codigo_ingreso" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
